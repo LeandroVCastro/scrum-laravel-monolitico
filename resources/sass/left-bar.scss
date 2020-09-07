@@ -1,0 +1,24 @@
+@import 'variables';
+
+#left-bar {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    li {
+        padding: 0px;
+        margin: 0px;
+        color: $body-bg;
+        a {
+            margin: 1px 0px;
+            color: $body-bg;
+            text-decoration: none;
+            padding: 7px 20px;
+            background-color: $blue;
+            width: 100%;
+            display: block;
+            &:hover {
+                background-color: $indigo;
+            }
+        }
+    }
+}

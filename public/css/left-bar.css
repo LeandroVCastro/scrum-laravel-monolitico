@@ -1,0 +1,26 @@
+#left-bar {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+
+#left-bar li {
+  padding: 0px;
+  margin: 0px;
+  color: #f8fafc;
+}
+
+#left-bar li a {
+  margin: 1px 0px;
+  color: #f8fafc;
+  text-decoration: none;
+  padding: 7px 20px;
+  background-color: #3490dc;
+  width: 100%;
+  display: block;
+}
+
+#left-bar li a:hover {
+  background-color: #6574cd;
+}
+
