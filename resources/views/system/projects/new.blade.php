@@ -25,7 +25,7 @@
                             </div>
                           </div>
                           <div class="d-flex justify-content-end">
-                              <button type="button" class="btn btn-light mr-2">Cancelar</button>
+                              <a type="button" class="btn btn-light mr-2" href=" {{ url('/projects') }} ">Cancelar</a>
                               <button type="submit" class="btn btn-success">Salvar</button>
                           </div>
                     </form>
