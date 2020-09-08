@@ -25,3 +25,5 @@ Route::get('/projects', 'ProjectsController@index')->name('projects');
 Route::get('/projects/new', 'ProjectsController@newRender')->name('new-project');
 // Salva projeto
 Route::post('/projects/store', 'ProjectsController@store')->name('store-project');
+// Deleta projeto
+Route::get('/projects/delete/{id}', 'ProjectsController@destroy')->name('delete-project');

@@ -39,4 +39,15 @@ class ProjectsController extends Controller
         }
         return redirect('/projects');
     }
+
+    public function destroy(Request $request)
+    {
+        if ($project = ProjectModel::find($request->id)) {
+            $project->delete();
+            $request->session()->flash('message.success', 'Excluído com sucesso!');
+            return redirect('/projects');
+        } else {
+            return abort(404);
+        }
+    }
 }

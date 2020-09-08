@@ -41,7 +41,9 @@
                                     <td>{{ $project->description }}</td>
                                     <td class="options">
                                         <div class="btn-group" role="group" aria-label="Opções">
-                                            <a type="button" class="btn btn-danger">
+                                            <a type="button" class="btn btn-danger"
+                                            onclick="return confirm('Tem certeza?')"
+                                            href=" {{ route('delete-project', ['id' => $project->id]) }} ">
                                                 <i class="far fa-trash-alt"></i> Excluir
                                             </a>
                                             <a type="button" class="btn btn-primary">
