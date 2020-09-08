@@ -15,12 +15,17 @@
   color: #f8fafc;
   text-decoration: none;
   padding: 7px 20px;
-  background-color: #3490dc;
+  background-color: #343a40;
   width: 100%;
   display: block;
 }
 
 #left-bar li a:hover {
-  background-color: #6574cd;
+  background-color: #656769;
+}
+
+#left-bar li a i {
+  width: 15px;
+  display: inline-table;
 }
 

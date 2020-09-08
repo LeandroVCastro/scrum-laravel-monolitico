@@ -8,3 +8,22 @@
 @import '~bootstrap/scss/bootstrap';
 
 // @import 'left-bar.scss';
+
+
+.btn-new {
+    margin-bottom: 1rem;
+    float: right;
+}
+
+
+.table {
+    td {
+        &.options {
+            padding: 0.75rem 0px 0.75rem 0.75rem;
+            .btn-group {
+                // float: right;
+                width: 100%;
+            }
+        }
+    }
+}

@@ -1,3 +1,10 @@
 # Auxilia na execução da metodologia SCRUM. 
 
-Desenvolvido usando o conceito de aplicação monolítica para ser mais simples e rápida de desenvolver e manter.
+## Este sistema tem a intenção de ser um auxiliar para equipes executarem a metodologia SCRUM
+
+***
+
+##### Em breve instruções de como instalar sua própria versão
+
+***
+__É Open-Source e sempre será__

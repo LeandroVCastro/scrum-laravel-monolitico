@@ -15,5 +15,11 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', 'HomeController@index')->name('home');
 Auth::routes();
-Route::get('/dashboard', 'DashboardController@index');
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+
+
+// PROJETOS --- Todas as rotas relacionadas as telas de projetos
+
+Route::get('/projects', 'ProjectsController@index')->name('projects');
+Route::get('/projects/new', 'ProjectsController@newRender')->name('new-project');
 // Route::get('/home', 'HomeController@index')->name('home');

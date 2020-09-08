@@ -13,11 +13,15 @@
             color: $body-bg;
             text-decoration: none;
             padding: 7px 20px;
-            background-color: $blue;
+            background-color: $black;
             width: 100%;
             display: block;
             &:hover {
-                background-color: $indigo;
+                background-color: $black-hover;
+            }
+            i {
+                width: 15px;
+                display: inline-table;
             }
         }
     }
