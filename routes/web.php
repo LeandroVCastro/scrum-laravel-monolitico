@@ -19,7 +19,9 @@ Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
 
 // PROJETOS --- Todas as rotas relacionadas as telas de projetos
-
+// Lista projetos
 Route::get('/projects', 'ProjectsController@index')->name('projects');
+// Formulário de cadastro
 Route::get('/projects/new', 'ProjectsController@newRender')->name('new-project');
-// Route::get('/home', 'HomeController@index')->name('home');
+// Salva projeto
+Route::post('/projects/store', 'ProjectsController@store')->name('store-project');

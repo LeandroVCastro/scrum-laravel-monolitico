@@ -7,7 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Scrum Manager</title>
     <script src="https://kit.fontawesome.com/92c5b8b089.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('css/all.min.css') }}">
 </head>
 
 <body>
+    <script src="{{ asset('js/app.js') }}"></script>

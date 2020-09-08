@@ -37266,6 +37266,10 @@ module.exports = function(module) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+function confirmDelete() {
+  if (!confirm('Tem certeza que deseja excluir esse registro?')) event.preventDefault();
+}
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

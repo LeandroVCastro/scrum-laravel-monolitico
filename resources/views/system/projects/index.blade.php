@@ -10,6 +10,16 @@
                 <div class="card-body">
                     <h2>Projetos</h2>
                     <hr>
+                    @if(session()->has('message.success'))
+                        <div class="alert alert-success"> 
+                            {{ session('message.success') }}
+                        </div>
+                    @endif
+                    @if(session()->has('message.error'))
+                        <div class="alert alert-danger"> 
+                            {{ session('message.error') }}
+                        </div>
+                    @endif
                     <a class="btn btn-primary btn-new" href="{{ route('new-project') }}">
                         <i class="fas fa-plus"></i> Novo
                     </a>
@@ -26,7 +36,7 @@
                         <tbody>
                             @foreach ($projects as $project)
                                 <tr>
-                                    <th scope="row">1</th>
+                                    <th scope="row">{{ $project->id}}</th>
                                     <td>{{ $project->name }}</td>
                                     <td>{{ $project->description }}</td>
                                     <td class="options">
