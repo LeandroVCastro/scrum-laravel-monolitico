@@ -47,7 +47,7 @@ class ProjectsController extends Controller
             $request->session()->flash('message.success', 'Excluído com sucesso!');
             return redirect('/projects');
         } else {
-            return abort(404);
+            return abort(404, 'Projeto não encontrado');
         }
     }
 }
