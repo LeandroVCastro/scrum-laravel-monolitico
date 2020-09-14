@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Project as ProjectModel;
+use Illuminate\Support\Facades\Storage;
 
 
 class ProjectsController extends Controller
@@ -48,6 +49,7 @@ class ProjectsController extends Controller
     {
         if ($project = ProjectModel::find($request->id)) {
             $project->delete();
+            Storage::delete('public/projects/' . $project->image);
             $request->session()->flash('message.success', 'Excluído com sucesso!');
             return redirect('/projects');
         } else {
