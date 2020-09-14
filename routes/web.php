@@ -23,6 +23,8 @@ Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 Route::get('/projects', 'ProjectsController@index')->name('projects');
 // Formulário de cadastro
 Route::get('/projects/new', 'ProjectsController@newRender')->name('new-project');
+// Formulário de edição
+Route::get('/projects/edit/{id}', 'ProjectsController@editRender')->name('edit-project');
 // Salva projeto
 Route::post('/projects/store', 'ProjectsController@store')->name('store-project');
 // Deleta projeto

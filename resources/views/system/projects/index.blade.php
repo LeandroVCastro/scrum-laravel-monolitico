@@ -38,8 +38,7 @@
                             @foreach ($projects as $project)
                                 <tr>
                                     <th scope="row">{{ $project->id}}</th>
-                                    <td> <img src="{{  asset('storage/projects/' . $project->image)  }}" style="width: 100%;" alt=""> </td>
-                                    {{-- <td> <img src="http://localhost/storage/projects/IDTJtZZkOx30XrnQNe0nW1b1ou4t4yaLhlA9vfXT.jpeg" alt=""> </td> --}}
+                                    <td> <img src="{{ asset('storage/projects/' . $project->image) }}" style="width: 100%;" alt=""> </td>
                                     <td>{{ $project->name }}</td>
                                     <td>{{ $project->description }}</td>
                                     <td class="options">
@@ -49,7 +48,8 @@
                                             href=" {{ route('delete-project', ['id' => $project->id]) }} ">
                                                 <i class="far fa-trash-alt"></i> Excluir
                                             </a>
-                                            <a type="button" class="btn btn-primary">
+                                            <a type="button" class="btn btn-primary"
+                                            href=" {{ route('edit-project', ['id' => $project->id]) }} ">
                                                 <i class="far fa-edit"></i> Editar
                                             </a>
                                         </div>

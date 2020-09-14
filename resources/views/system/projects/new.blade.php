@@ -15,25 +15,34 @@
                         <div class="form-group row">
                             <label for="name" class="col-sm-2 col-form-label">Nome</label>
                             <div class="col-sm-10">
-                              <input type="text" class="form-control" id="name" name="name" required>
+                                <input type="text" class="form-control" id="name" name="name" value="{{ $project->name ?? '' }}" required>
                             </div>
-                          </div>
-                          <div class="form-group row">
+                        </div>
+                        <div class="form-group row">
                             <label for="description" class="col-sm-2 col-form-label">Descrição</label>
                             <div class="col-sm-10">
-                              <textarea class="form-control" id="description" name="description" rows="5" required></textarea>
+                                <textarea class="form-control" id="description" name="description" rows="5"
+                                    required>{{$project->description ?? ''}}</textarea>
                             </div>
-                          </div>
-                          <div class="form-group row">
+                        </div>
+                        <div class="form-group row">
                             <label for="image" class="col-sm-2 col-form-label">Imagem</label>
                             <div class="col-sm-10 ">
                                 <input type="file" name="image" id="image">
                             </div>
-                          </div>
-                          <div class="d-flex justify-content-end">
-                              <a type="button" class="btn btn-light mr-2" href=" {{ url('/projects') }} ">Cancelar</a>
-                              <button type="submit" class="btn btn-success">Salvar</button>
-                          </div>
+                        </div>
+                        @if (isset($project))
+                            <div class="row">
+                                <div class="offset-sm-2 col-sm-10">
+                                    <img src="{{ asset('storage/projects/' . $project->image) }}" style="max-width: 100%;" alt="">
+                                </div>
+                            </div>
+                            <input type="hidden" name="id" value="{{$project->id}}">
+                        @endif
+                        <div class="d-flex justify-content-end">
+                            <a type="button" class="btn btn-light mr-2" href=" {{ url('/projects') }} ">Cancelar</a>
+                            <button type="submit" class="btn btn-success">Salvar</button>
+                        </div>
                     </form>
                 </div>
             </div>

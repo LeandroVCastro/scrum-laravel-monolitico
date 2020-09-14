@@ -30,13 +30,23 @@ class ProjectsController extends Controller
     public function store(Request $request)
     {
         try {
-            $project = new ProjectModel;
+            if ($request->id) {
+                $project = ProjectModel::find($request->id);
+                if (!$project) {
+                    $request->session()->flash('message.error', 'Projeto ID: ' . $request->id . ' não encontrado');    
+                }
+            } else {
+                $project = new ProjectModel;
+            }
             $project->name        = $request->input('name');
             $project->description = $request->input('description');
-            $path = $request->file('image')->store('public/projects');
-            $path = explode('/', $path);
-            $path = $path[count($path)-1];
-            $project->image = $path;
+            if ($request->file('image')) {
+                $path = $request->file('image')->store('public/projects');
+                $path = explode('/', $path);
+                $path = $path[count($path)-1];
+                Storage::delete('public/projects/' . $project->image);
+                $project->image = $path;
+            }
             $project->save();
             $request->session()->flash('message.success', 'Salvo com sucesso!');
         } catch (\Throwable $th) {
@@ -52,6 +62,18 @@ class ProjectsController extends Controller
             Storage::delete('public/projects/' . $project->image);
             $request->session()->flash('message.success', 'Excluído com sucesso!');
             return redirect('/projects');
+        } else {
+            return abort(404, 'Projeto não encontrado');
+        }
+    }
+
+    public function editRender(Request $request)
+    {
+        if ($project = ProjectModel::find($request->id)) {
+            $params = [
+                'project' => $project
+            ];
+            return view('system.projects.new', $params);
         } else {
             return abort(404, 'Projeto não encontrado');
         }
