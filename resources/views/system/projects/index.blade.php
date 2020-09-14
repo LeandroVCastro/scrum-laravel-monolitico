@@ -28,7 +28,8 @@
                         <thead class="thead-dark">
                             <tr>
                                 <th scope="col" style="width: 5%;">#</th>
-                                <th scope="col" style="width: 30%;">Nome</th>
+                                <th scope="col" style="width: 10%">Imagem</th>
+                                <th scope="col" style="width: 20%;">Nome</th>
                                 <th scope="col" style="width: 35%;">Descrição</th>
                                 <th scope="col" style="width: 20%;">Opções</th>
                             </tr>
@@ -37,6 +38,8 @@
                             @foreach ($projects as $project)
                                 <tr>
                                     <th scope="row">{{ $project->id}}</th>
+                                    <td> <img src="{{  asset('storage/projects/' . $project->image)  }}" style="width: 100%;" alt=""> </td>
+                                    {{-- <td> <img src="http://localhost/storage/projects/IDTJtZZkOx30XrnQNe0nW1b1ou4t4yaLhlA9vfXT.jpeg" alt=""> </td> --}}
                                     <td>{{ $project->name }}</td>
                                     <td>{{ $project->description }}</td>
                                     <td class="options">

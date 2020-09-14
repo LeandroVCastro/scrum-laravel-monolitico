@@ -10,7 +10,7 @@
                 <div class="card-body">
                     <h2>Novo Projeto</h2>
                     <hr>
-                    <form action="{{ url('/projects/store') }}" method="POST">
+                    <form action="{{ url('/projects/store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row">
                             <label for="name" class="col-sm-2 col-form-label">Nome</label>
@@ -22,6 +22,12 @@
                             <label for="description" class="col-sm-2 col-form-label">Descrição</label>
                             <div class="col-sm-10">
                               <textarea class="form-control" id="description" name="description" rows="5" required></textarea>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label for="image" class="col-sm-2 col-form-label">Imagem</label>
+                            <div class="col-sm-10 ">
+                                <input type="file" name="image" id="image">
                             </div>
                           </div>
                           <div class="d-flex justify-content-end">

@@ -32,6 +32,10 @@ class ProjectsController extends Controller
             $project = new ProjectModel;
             $project->name        = $request->input('name');
             $project->description = $request->input('description');
+            $path = $request->file('image')->store('public/projects');
+            $path = explode('/', $path);
+            $path = $path[count($path)-1];
+            $project->image = $path;
             $project->save();
             $request->session()->flash('message.success', 'Salvo com sucesso!');
         } catch (\Throwable $th) {
