@@ -31,3 +31,7 @@ Route::post('/projects/store', 'ProjectsController@store')->name('store-project'
 Route::get('/projects/delete/{id}', 'ProjectsController@destroy')->name('delete-project');
 // Ver projeto
 Route::get('/projects/{id}', 'ProjectsController@show')->name('project');
+
+// Sprints --- Todas as rotas relacionadas as telas de Sprints
+// Lista Sprints
+Route::get('/sprints', 'SprintController@index')->name('sprints');
