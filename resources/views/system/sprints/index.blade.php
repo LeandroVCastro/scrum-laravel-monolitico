@@ -21,7 +21,8 @@
                                 <th scope="col" style="width: 5%;">#</th>
                                 <th scope="col" style="width: 10%">Nome</th>
                                 <th scope="col" style="width: 20%;">Descrição</th>
-                                <th scope="col" style="width: 35%;">Status</th>
+                                <th scope="col" style="width: 20%;">Status</th>
+                                <th scope="col" style="width: 15%;" >Projeto</th>
                                 <th scope="col" style="width: 20%;">Opções</th>
                             </tr>
                         </thead>
@@ -42,8 +43,12 @@
                                         <span class="badge badge-success">{{ $sprint->status->title }}</span>
                                     @endif
                                 </td>
+                                <td>
+                                    <a href="{{ route('project', ['id' => $sprint->project_id]) }}" class="text-decoration-none">
+                                        {{ $sprint->project->name }}
+                                    </a>
+                                </td>
                                 <td class="options">
-                                    Opções
                                     <div class="btn-group" role="group" aria-label="Opções">
                                         <a type="button" class="btn btn-danger btn-sm"
                                         onclick="return confirm('Tem certeza?')"

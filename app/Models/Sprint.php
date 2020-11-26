@@ -13,4 +13,9 @@ class Sprint extends Model
     {
         return $this->hasOne('App\Models\SprintsStatus', 'id', 'status_id');
     }
+
+    public function project()
+    {
+        return $this->belongsTo('App\Models\Project');
+    }
 }
