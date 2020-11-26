@@ -35,3 +35,7 @@ Route::get('/projects/{id}', 'ProjectsController@show')->name('project');
 // Sprints --- Todas as rotas relacionadas as telas de Sprints
 // Lista Sprints
 Route::get('/sprints', 'SprintController@index')->name('sprints');
+// Formulário de cadastro
+Route::get('/sprints/new', 'SprintController@newRender')->name('new-sprint');
+// Salva sprint
+Route::post('/sprints/store', 'SprintController@store')->name('store-sprint');

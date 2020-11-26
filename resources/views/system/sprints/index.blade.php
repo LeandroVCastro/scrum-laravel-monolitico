@@ -12,7 +12,7 @@
                 </div>
                 <div class="card-body">
                     @include('system.shared.message')
-                    <a class="btn btn-primary btn-new" href="{{ route('new-project') }}">
+                    <a class="btn btn-primary btn-new" href="{{ route('new-sprint') }}">
                         <i class="fas fa-plus"></i> Novo
                     </a>
                     <table class="table table-hover">
