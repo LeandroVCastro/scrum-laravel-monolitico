@@ -18,7 +18,9 @@
                             <div class="col-sm-10">
                                 <select class="custom-select" name="project_id" id="project_id" required="true">
                                     @foreach ($projects as $project)
-                                    <option value="{{ $project->id }}">{{ $project->name }}</option>
+                                    <option {{ $sprint->project_id == $project->id ? 'selected' : ''}} value="{{ $project->id }}">
+                                        {{ $project->name }}
+                                    </option>
                                     @endforeach
                                 </select>
                             </div>
@@ -41,7 +43,9 @@
                             <div class="col-sm-10">
                                 <select class="custom-select" name="status_id" id="status_id" required>
                                     @foreach ($status as $statusItem)
-                                    <option value="{{ $statusItem->id }}">{{ $statusItem->title }}</option>
+                                    <option {{ $sprint->status_id == $statusItem->id ? 'selected' : ''}} value="{{ $statusItem->id }}">
+                                        {{ $statusItem->title }}
+                                    </option>
                                     @endforeach
                                 </select>
                             </div>

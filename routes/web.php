@@ -37,6 +37,8 @@ Route::get('/projects/{id}', 'ProjectsController@show')->name('project');
 Route::get('/sprints', 'SprintController@index')->name('sprints');
 // Formulário de cadastro
 Route::get('/sprints/new', 'SprintController@newRender')->name('new-sprint');
+// Formulário de edição
+Route::get('/sprints/edit/{id}', 'SprintController@editRender')->name('edit-sprint');
 // Salva sprint
 Route::post('/sprints/store', 'SprintController@store')->name('store-sprint');
 // Deleta sprint

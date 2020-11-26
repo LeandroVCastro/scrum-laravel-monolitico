@@ -26,7 +26,7 @@ class SprintController extends Controller
     {
         $params = [
             'projects' => ProjectModel::orderBy('id', 'desc')->get(),
-            'status'   => SprintStatusModel::orderBy('id', 'desc')->get()
+            'status'   => SprintStatusModel::get()
         ];
         return view('system.sprints.new', $params);
     }
@@ -63,5 +63,18 @@ class SprintController extends Controller
         }
         $request->session()->flash('message.error', 'Sprint Não encontrado');
         return redirect('/sprints');
+    }
+
+    public function editRender(Request $request)
+    {
+        if ($sprint = SprintModel::find($request->id)) {
+            $params = [
+                'sprint' => $sprint,
+                'projects' => ProjectModel::orderBy('id', 'desc')->get(),
+                'status'   => SprintStatusModel::get()
+            ];
+            return view('system.sprints.new', $params);
+        }
+        return abort(404, 'Sprint não encontrado');
     }
 }

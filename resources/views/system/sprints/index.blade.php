@@ -51,13 +51,13 @@
                                             <i class="far fa-trash-alt"></i>
                                         </a>
                                         <a type="button" class="btn btn-primary btn-sm"
-                                        href=" {{ route('edit-project', ['id' => $sprint->id]) }} ">
+                                        href=" {{ route('edit-sprint', ['id' => $sprint->id]) }} ">
                                             <i class="far fa-edit"></i>
                                         </a>
-                                        <a type="button" class="btn btn-secondary btn-sm"
+                                        {{-- <a type="button" class="btn btn-secondary btn-sm"
                                         href=" {{ route('project', ['id' => $sprint->id]) }} ">
                                             <i class="far fa-eye"></i>
-                                        </a>
+                                        </a> --}}
                                     </div>
                                 </td>
                             </tr>
