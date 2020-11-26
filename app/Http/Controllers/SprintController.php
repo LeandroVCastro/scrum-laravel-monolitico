@@ -53,4 +53,15 @@ class SprintController extends Controller
         }
         return redirect('/sprints');
     }
+
+    public function destroy(Request $request)
+    {
+        if ($sprint = SprintModel::find($request->id)) {
+            $sprint->delete();
+            $request->session()->flash('message.success', 'Excluído com sucesso!');
+            return redirect('/sprints');
+        }
+        $request->session()->flash('message.error', 'Sprint Não encontrado');
+        return redirect('/sprints');
+    }
 }

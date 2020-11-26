@@ -62,9 +62,9 @@ class ProjectsController extends Controller
             Storage::delete('public/projects/' . $project->image);
             $request->session()->flash('message.success', 'Excluído com sucesso!');
             return redirect('/projects');
-        } else {
-            return abort(404, 'Projeto não encontrado');
         }
+        $request->session()->flash('message.error', 'Projeto Não encontrado');
+        return redirect('/projects');
     }
 
     public function editRender(Request $request)

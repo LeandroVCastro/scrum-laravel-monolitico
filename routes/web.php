@@ -39,3 +39,5 @@ Route::get('/sprints', 'SprintController@index')->name('sprints');
 Route::get('/sprints/new', 'SprintController@newRender')->name('new-sprint');
 // Salva sprint
 Route::post('/sprints/store', 'SprintController@store')->name('store-sprint');
+// Deleta sprint
+Route::get('/sprints/delete/{id}', 'SprintController@destroy')->name('delete-sprint');
