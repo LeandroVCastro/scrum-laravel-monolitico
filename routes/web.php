@@ -29,3 +29,5 @@ Route::get('/projects/edit/{id}', 'ProjectsController@editRender')->name('edit-p
 Route::post('/projects/store', 'ProjectsController@store')->name('store-project');
 // Deleta projeto
 Route::get('/projects/delete/{id}', 'ProjectsController@destroy')->name('delete-project');
+// Ver projeto
+Route::get('/projects/{id}', 'ProjectsController@show')->name('project');

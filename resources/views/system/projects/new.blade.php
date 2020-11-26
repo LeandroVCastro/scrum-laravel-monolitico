@@ -1,15 +1,16 @@
 @include('system.shared.header')
 <br>
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-sm-2">
             @include('system.shared.left-bar')
         </div>
         <div class="col-sm-10">
             <div class="card">
+                <div class="card-header">
+                    Novo Projeto
+                </div>
                 <div class="card-body">
-                    <h2>Novo Projeto</h2>
-                    <hr>
                     <form action="{{ url('/projects/store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row">
@@ -39,6 +40,7 @@
                             </div>
                             <input type="hidden" name="id" value="{{$project->id}}">
                         @endif
+                        <br>
                         <div class="d-flex justify-content-end">
                             <a type="button" class="btn btn-light mr-2" href=" {{ url('/projects') }} ">Cancelar</a>
                             <button type="submit" class="btn btn-success">Salvar</button>

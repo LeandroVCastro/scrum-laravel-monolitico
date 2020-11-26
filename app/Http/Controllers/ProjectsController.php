@@ -78,4 +78,16 @@ class ProjectsController extends Controller
             return abort(404, 'Projeto não encontrado');
         }
     }
+
+    public function show(Request $request)
+    {
+        if ($project = ProjectModel::find($request->id)) {
+            $params = [
+                'project' => $project
+            ];
+            return view('system.projects.show', $params);
+        } else {
+            return abort(404, 'Projeto não encontrado');
+        }
+    }
 }

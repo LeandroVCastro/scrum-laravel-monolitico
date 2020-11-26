@@ -1,15 +1,16 @@
 @include('system.shared.header')
 <br>
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-sm-2">
             @include('system.shared.left-bar')
         </div>
         <div class="col-sm-10">
             <div class="card">
+                <div class="card-header">
+                    Projetos
+                </div>
                 <div class="card-body">
-                    <h2>Projetos</h2>
-                    <hr>
                     @if(session()->has('message.success'))
                         <div class="alert alert-success"> 
                             {{ session('message.success') }}
@@ -43,14 +44,18 @@
                                     <td>{{ $project->description }}</td>
                                     <td class="options">
                                         <div class="btn-group" role="group" aria-label="Opções">
-                                            <a type="button" class="btn btn-danger"
+                                            <a type="button" class="btn btn-danger btn-sm"
                                             onclick="return confirm('Tem certeza?')"
                                             href=" {{ route('delete-project', ['id' => $project->id]) }} ">
-                                                <i class="far fa-trash-alt"></i> Excluir
+                                                <i class="far fa-trash-alt"></i>
                                             </a>
-                                            <a type="button" class="btn btn-primary"
+                                            <a type="button" class="btn btn-primary btn-sm"
                                             href=" {{ route('edit-project', ['id' => $project->id]) }} ">
-                                                <i class="far fa-edit"></i> Editar
+                                                <i class="far fa-edit"></i>
+                                            </a>
+                                            <a type="button" class="btn btn-secondary btn-sm"
+                                            href=" {{ route('project', ['id' => $project->id]) }} ">
+                                                <i class="far fa-eye"></i>
                                             </a>
                                         </div>
                                     </td>

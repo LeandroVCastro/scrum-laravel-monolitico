@@ -1,6 +1,6 @@
 @include('system.shared.header')
 <br>
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-sm-2">
             @include('system.shared.left-bar')

@@ -1,4 +1,4 @@
-<ul id="left-bar">
+<ul id="left-bar" >
     <li><a href="{{ route('dashboard') }}"><i class="fas fa-home"></i> Início</a></li>
     <li><a href="{{ route('projects') }}"><i class="fas fa-clipboard-list"></i> Projetos</a></li>
     <li><a href=""><i class="fas fa-running"></i> Sprints</a></li>
