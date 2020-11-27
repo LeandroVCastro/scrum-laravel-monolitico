@@ -34,7 +34,7 @@ class Project extends Model
         ->whereNull('pru.deleted_at');
     }
 
-    public function checkIfLoggedUserHavePermission()
+    public function loggedUserHavePermissionToView()
     {
         $user = UserModel::find(Auth::id());
         if (!$user) {
@@ -44,6 +44,23 @@ class Project extends Model
             return true;
         } else {
             $project_role_user = $this->project_role_user->where('user_id', $user->id)->first();
+            return $project_role_user ? true : false;
+        }
+    }
+
+    public function loggedUserHavePermissionToSave()
+    {
+        $user = UserModel::find(Auth::id());
+        if (!$user) {
+            return false;
+        }
+        if ($user->admin) {
+            return true;
+        } else {
+            $project_role_user = $this->project_role_user
+                ->whereIn('project_role_id', [1, 2])
+                ->where('user_id', $user->id)
+                ->first();
             return $project_role_user ? true : false;
         }
     }

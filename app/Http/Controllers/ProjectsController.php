@@ -42,17 +42,21 @@ class ProjectsController extends Controller
             } else {
                 $project = new ProjectModel;
             }
-            $project->name        = $request->input('name');
-            $project->description = $request->input('description');
-            if ($request->file('image')) {
-                $path = $request->file('image')->store('public/projects');
-                $path = explode('/', $path);
-                $path = $path[count($path)-1];
-                Storage::delete('public/projects/' . $project->image);
-                $project->image = $path;
+            if ($project->loggedUserHavePermissionToSave()) {
+                $project->name        = $request->input('name');
+                $project->description = $request->input('description');
+                if ($request->file('image')) {
+                    $path = $request->file('image')->store('public/projects');
+                    $path = explode('/', $path);
+                    $path = $path[count($path)-1];
+                    Storage::delete('public/projects/' . $project->image);
+                    $project->image = $path;
+                }
+                $project->save();
+                $request->session()->flash('message.success', 'Salvo com sucesso!');
+                return redirect('/projects');
             }
-            $project->save();
-            $request->session()->flash('message.success', 'Salvo com sucesso!');
+            $request->session()->flash('message.error', 'Você não tem permissão para isso');
         } catch (\Throwable $th) {
             $request->session()->flash('message.error', 'Erro interno: ' . $th->getMessage());
         }
@@ -79,20 +83,21 @@ class ProjectsController extends Controller
     public function editRender(Request $request)
     {
         if ($project = ProjectModel::find($request->id)) {
-            if ($project->checkIfLoggedUserHavePermission()) {
+            if ($project->loggedUserHavePermissionToSave()) {
                 $params = [
                     'project' => $project
                 ];
                 return view('system.projects.new', $params);
             }
         }
-        return abort(404, 'Projeto não encontrado');
+        $request->session()->flash('message.error', 'Você não tem permissão para isso');
+        return redirect('/projects');
     }
 
     public function show(Request $request)
     {
         if ($project = ProjectModel::find($request->id)) {
-            if ($project->checkIfLoggedUserHavePermission()) {
+            if ($project->loggedUserHavePermissionToView()) {
                 $params = [
                     'project' => $project
                 ];
