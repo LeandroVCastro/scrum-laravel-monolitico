@@ -22,7 +22,7 @@
                 </div>
                 <div class="card-body">
                     <table class="table table-hover">
-                        <thead class="thead-dark">
+                        <thead class="thead">
                             <tr>
                                 <th scope="col" style="width: 5%;">#</th>
                                 <th scope="col" style="width: 10%">Nome</th>

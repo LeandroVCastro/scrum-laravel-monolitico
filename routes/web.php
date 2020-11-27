@@ -51,4 +51,6 @@ Route::get('/sprints/{id}', 'SprintController@show')->name('sprint');
 Route::prefix('tasks')->group(function () {
     // Lista tarefas
     Route::get('/', 'TaskController@index')->name('tasks');
+    // Deleta tarefa
+    Route::get('/delete/{id}', 'TaskController@destroy')->name('delete-task');
 });

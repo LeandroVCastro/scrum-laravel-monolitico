@@ -19,4 +19,15 @@ class TaskController extends Controller
         ];
         return view('system.tasks.index', $params);
     }
+
+    public function destroy(Request $request)
+    {
+        if ($task = TaskModel::find($request->id)) {
+            $task->delete();
+            $request->session()->flash('message.success', 'Excluído com sucesso!');
+            return redirect('/tasks');
+        }
+        $request->session()->flash('message.error', 'Tarefa Não encontrada');
+        return redirect('/tasks');
+    }
 }

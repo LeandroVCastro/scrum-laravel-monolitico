@@ -12,18 +12,15 @@
                 </div>
                 <div class="card-body">
                     @include('system.shared.message')
-                    <a class="btn btn-primary btn-new" href="{{ route('new-sprint') }}">
-                        <i class="fas fa-plus"></i> Nova
-                    </a>
                     <table class="table table-hover">
-                        <thead class="thead-dark">
+                        <thead class="thead">
                             <tr>
                                 <th scope="col" style="width: 5%;">#</th>
-                                <th scope="col" style="width: 10%">Título</th>
+                                <th scope="col" style="width: 15%">Título</th>
                                 <th scope="col" style="width: 20%;">Descrição</th>
-                                <th scope="col" style="width: 20%;">Status</th>
+                                <th scope="col" style="width: 10%;">Status</th>
                                 <th scope="col" style="width: 15%;" >Projeto</th>
-                                <th scope="col" style="width: 15%;" >Sprint</th>
+                                <th scope="col" style="width: 20%;" >Sprint</th>
                                 <th scope="col" style="width: 20%;">Opções</th>
                             </tr>
                         </thead>
@@ -49,20 +46,27 @@
                                         {{ $task->project->name }}
                                     </a>
                                 </td>
-                                <td>Sprint</td>
+                                <td>
+                                    @if (isset($task->sprint))
+                                        <a href="{{ route('sprint', ['id' => $task->sprint_id]) }}" class="text-decoration-none">
+                                            {{ $task->sprint->title }}
+                                        </a>
+                                    @else
+                                        --
+                                    @endif
+                                </td>
                                 <td class="options">
-                                    Opções
-                                    {{-- <a type="button" class="btn btn-danger btn-sm"
+                                    <a type="button" class="btn btn-danger btn-sm"
                                     onclick="return confirm('Tem certeza?')"
-                                    href=" {{ route('delete-sprint', ['id' => $sprint->id]) }} ">
+                                    href=" {{ route('delete-task', ['id' => $task->id]) }} ">
                                         <i class="far fa-trash-alt"></i>
                                     </a>
-                                    <a type="button" class="btn btn-primary btn-sm"
-                                    href=" {{ route('edit-sprint', ['id' => $sprint->id]) }} ">
+                                    {{-- <a type="button" class="btn btn-primary btn-sm"
+                                    href=" {{ route('edit-task', ['id' => $task->id]) }} ">
                                         <i class="far fa-edit"></i>
                                     </a>
                                     <a type="button" class="btn btn-secondary btn-sm"
-                                    href=" {{ route('sprint', ['id' => $sprint->id]) }} ">
+                                    href=" {{ route('task', ['id' => $task->id]) }} ">
                                         <i class="far fa-eye"></i>
                                     </a> --}}
                                 </td>
