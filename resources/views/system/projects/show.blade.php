@@ -25,9 +25,9 @@
                         <thead class="thead">
                             <tr>
                                 <th scope="col" style="width: 5%;">#</th>
-                                <th scope="col" style="width: 15%">Nome</th>
-                                <th scope="col" style="width: 20%;">Descrição</th>
-                                <th scope="col" style="width: 35%;">Status</th>
+                                <th scope="col" style="width: 25%">Nome</th>
+                                <th scope="col" style="width: 35%;">Descrição</th>
+                                <th scope="col" style="width: 10%;">Status</th>
                                 <th scope="col" style="width: 20%;">Opções</th>
                             </tr>
                         </thead>

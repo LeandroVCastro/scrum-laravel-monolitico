@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Project as ProjectModel;
+use App\Models\Sprint as SprintModel;
 
 class User extends Authenticatable
 {

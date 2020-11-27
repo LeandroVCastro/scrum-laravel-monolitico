@@ -18,9 +18,10 @@ class SprintController extends Controller
 
     public function index()
     {
-        // $user = UserModel::find(Auth::id());
+        $user = UserModel::find(Auth::id());
         $params = [
-            'sprints' => SprintModel::orderBy('id', 'desc')->get()
+            'sprints' => SprintModel::orderBy('id', 'desc')->get(),
+            'user' => $user
         ];
         return view('system.sprints.index', $params);
     }
@@ -45,12 +46,17 @@ class SprintController extends Controller
             } else {
                 $sprint = new SprintModel;
             }
-            $sprint->title        = $request->input('title');
-            $sprint->description  = $request->input('description');
-            $sprint->project_id   = $request->input('project_id');
-            $sprint->status_id   = $request->input('status_id');
-            $sprint->save();
-            $request->session()->flash('message.success', 'Salvo com sucesso!');
+            $project = ProjectModel::find($request->input('project_id'));
+            if ($project->loggedUserHavePermissionToSave()) {
+                $sprint->title        = $request->input('title');
+                $sprint->description  = $request->input('description');
+                $sprint->project_id   = $request->input('project_id');
+                $sprint->status_id   = $request->input('status_id');
+                $sprint->save();
+                $request->session()->flash('message.success', 'Salvo com sucesso!');
+                return redirect('/sprints');;
+            }
+            $request->session()->flash('message.error', 'Você não tem permissão para isso');
         } catch (\Throwable $th) {
             $request->session()->flash('message.error', 'Erro interno: ' . $th->getMessage());
         }
@@ -60,8 +66,12 @@ class SprintController extends Controller
     public function destroy(Request $request)
     {
         if ($sprint = SprintModel::find($request->id)) {
-            $sprint->delete();
-            $request->session()->flash('message.success', 'Excluído com sucesso!');
+            if ($sprint->project->loggedUserHavePermissionToSave()) {
+                $sprint->delete();
+                $request->session()->flash('message.success', 'Excluído com sucesso!');
+                return redirect('/sprints');
+            }
+            $request->session()->flash('message.error', 'Você não tem permissão para isso');
             return redirect('/sprints');
         }
         $request->session()->flash('message.error', 'Sprint Não encontrado');
@@ -71,14 +81,17 @@ class SprintController extends Controller
     public function editRender(Request $request)
     {
         if ($sprint = SprintModel::find($request->id)) {
-            $params = [
-                'sprint' => $sprint,
-                'projects' => ProjectModel::orderBy('id', 'desc')->get(),
-                'status'   => SprintStatusModel::get()
-            ];
-            return view('system.sprints.new', $params);
+            if ($sprint->project->loggedUserHavePermissionToSave()) {
+                $params = [
+                    'sprint' => $sprint,
+                    'projects' => ProjectModel::orderBy('id', 'desc')->get(),
+                    'status'   => SprintStatusModel::get()
+                ];
+                return view('system.sprints.new', $params);
+            }
         }
-        return abort(404, 'Sprint não encontrado');
+        $request->session()->flash('message.error', 'Você não tem permissão para isso');
+        return redirect('/sprints');
     }
 
     public function show(Request $request)
