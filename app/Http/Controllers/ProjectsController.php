@@ -74,10 +74,12 @@ class ProjectsController extends Controller
     public function editRender(Request $request)
     {
         if ($project = ProjectModel::find($request->id)) {
-            $params = [
-                'project' => $project
-            ];
-            return view('system.projects.new', $params);
+            if ($project->checkIfLoggedUserHavePermission()) {
+                $params = [
+                    'project' => $project
+                ];
+                return view('system.projects.new', $params);
+            }
         }
         return abort(404, 'Projeto não encontrado');
     }
