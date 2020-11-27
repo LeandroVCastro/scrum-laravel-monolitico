@@ -47,21 +47,16 @@
                                         @endif
                                     </td>
                                     <td class="options">
-                                        opções
-                                        {{-- @if ($user->admin)
-                                            <a type="button" class="btn btn-danger btn-sm"
-                                            onclick="return confirm('Tem certeza?')"
-                                            href=" {{ route('delete-sprint', ['id' => $sprint->id]) }} ">
-                                                <i class="far fa-trash-alt"></i>
-                                            </a>
-                                        @endif
-                                        @if ($sprint->project->loggedUserHavePermissionToSave())
-                                            <a type="button" class="btn btn-primary btn-sm"
-                                            href=" {{ route('edit-sprint', ['id' => $sprint->id]) }} ">
-                                                <i class="far fa-edit"></i>
-                                            </a>
-                                        @endif
-                                        <a type="button" class="btn btn-secondary btn-sm"
+                                        {{-- <a type="button" class="btn btn-danger btn-sm"
+                                        onclick="return confirm('Tem certeza?')"
+                                        href=" {{ route('delete-user', ['id' => $user->id]) }} ">
+                                            <i class="far fa-trash-alt"></i>
+                                        </a> --}}
+                                        <a type="button" class="btn btn-primary btn-sm"
+                                        href=" {{ route('edit-user', ['id' => $user->id]) }} ">
+                                            <i class="far fa-edit"></i>
+                                        </a>
+                                        {{-- <a type="button" class="btn btn-secondary btn-sm"
                                         href=" {{ route('sprint', ['id' => $sprint->id]) }} ">
                                             <i class="far fa-eye"></i>
                                         </a> --}}

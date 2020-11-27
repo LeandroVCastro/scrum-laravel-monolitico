@@ -63,4 +63,6 @@ Route::prefix('users')->group(function () {
     Route::get('/new', 'UserController@newRender')->name('new-user');
     // Salva usuário
     Route::post('/store', 'UserController@store')->name('store-user');
+    // Formulário de edição
+    Route::get('/edit/{id}', 'UserController@editRender')->name('edit-user');
 });

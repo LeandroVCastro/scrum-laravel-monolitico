@@ -43,7 +43,9 @@ class UserController extends Controller
                 $user = new UserModel;
             }
             if (Auth::user()->admin) {
-                $user->password = $request->password;
+                if (!$user->id) {
+                    $user->password = Hash::make($request->password);
+                }
                 $user->name = $request->name;
                 $user->email = $request->email;
                 $user->admin = $request->admin ? true : false;
@@ -56,5 +58,22 @@ class UserController extends Controller
             $request->session()->flash('message.error', 'Erro interno: ' . $th->getMessage());
         }
         return redirect('/users');
+    }
+
+    public function editRender(Request $request)
+    {
+        if (!Auth::user()->admin) {
+            $request->session()->flash('message.error', 'Você não tem permissão para isso');
+            return redirect('/dashboard');
+        }
+        if ($user = UserModel::withTrashed()->find($request->id)) {
+            $params = [
+                'user' => $user
+            ];
+            return view('system.users.new', $params);
+        }
+        $request->session()->flash('message.error', 'Usuário não encontrado');
+        return redirect('/users');
+        
     }
 }

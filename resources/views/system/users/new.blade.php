@@ -16,30 +16,36 @@
                         <div class="form-group row">
                             <label for="name" class="col-sm-2 col-form-label">Nome</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="name" name="name" required>
+                                <input type="text" class="form-control" id="name" name="name" value="{{$user->name ?? ''}}" required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="email" class="col-sm-2 col-form-label">E-mail</label>
                             <div class="col-sm-10">
-                                <input type="email" class="form-control" id="email" name="email" required>
+                                <input type="email" class="form-control" id="email" name="email" value="{{$user->email ?? ''}}" required>
                             </div>
                         </div>
+                        @if (!isset($user))
                         <div class="form-group row">
                             <label for="password" class="col-sm-2 col-form-label">Senha</label>
                             <div class="col-sm-10">
                                 <input type="password" class="form-control" id="password" name="password" required>
                             </div>
                         </div>
+                        @endif
                         <div class="custom-control custom-switch">
-                            <input type="checkbox" class="custom-control-input" id="admin" name="admin">
+                            <input type="checkbox" class="custom-control-input" id="admin" name="admin"
+                            @if (isset($user) && $user->admin)
+                                {{'checked'}}
+                            @endif
+                            >
                             <label class="custom-control-label" for="admin">
                                 Administrador
                             </label>
                         </div>
-                        {{-- @if (isset($sprint))
-                            <input type="hidden" name="id" value="{{$sprint->id}}">
-                        @endif --}}
+                        @if (isset($user))
+                            <input type="hidden" name="id" value="{{$user->id}}">
+                        @endif
                         <br>
                         <div class="d-flex justify-content-end">
                             <a type="button" class="btn btn-light mr-2" href=" {{ url('/users') }} ">Cancelar</a>
