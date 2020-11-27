@@ -44,6 +44,7 @@ class ProjectsController extends Controller
                 $project = ProjectModel::find($request->id);
                 if (!$project) {
                     $request->session()->flash('message.error', 'Projeto ID: ' . $request->id . ' não encontrado');    
+                    return redirect('/projects');
                 }
             } else {
                 $project = new ProjectModel;

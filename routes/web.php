@@ -54,3 +54,13 @@ Route::prefix('tasks')->group(function () {
     // Deleta tarefa
     Route::get('/delete/{id}', 'TaskController@destroy')->name('delete-task');
 });
+
+// Usuários
+Route::prefix('users')->group(function () {
+    // Lista Usuários
+    Route::get('/', 'UserController@index')->name('users');
+    // Formulário de cadastro
+    Route::get('/new', 'UserController@newRender')->name('new-user');
+    // Salva usuário
+    Route::post('/store', 'UserController@store')->name('store-user');
+});

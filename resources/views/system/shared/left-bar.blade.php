@@ -11,6 +11,11 @@
     <a class="list-group-item list-group-item-action" id="tasks" href="{{ route('tasks') }}">
         <i class="fas fa-tasks"></i> Tarefas
     </a>
+    @if (Auth::user()->admin) 
+    <a class="list-group-item list-group-item-action" id="users" href="{{ route('users') }}">
+        <i class="fas fa-users-cog"></i> Usuários
+    </a>
+    @endif
     <a class="list-group-item list-group-item-action" href="{{ route('logout') }}"
     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
         <i class="fas fa-sign-out-alt"></i> Sair

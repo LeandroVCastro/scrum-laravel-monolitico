@@ -42,6 +42,7 @@ class SprintController extends Controller
                 $sprint = SprintModel::find($request->id);
                 if (!$sprint) {
                     $request->session()->flash('message.error', 'Sprint ID: ' . $request->id . ' não encontrado');    
+                    return redirect('/sprints');
                 }
             } else {
                 $sprint = new SprintModel;
