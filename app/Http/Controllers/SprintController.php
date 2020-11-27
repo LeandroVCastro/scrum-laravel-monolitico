@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Sprint as SprintModel;
 use App\Models\Project as ProjectModel;
 use App\Models\SprintsStatus as SprintStatusModel;
+use Illuminate\Support\Facades\Auth;
+use App\User as UserModel;
 
 class SprintController extends Controller
 {
@@ -16,6 +18,7 @@ class SprintController extends Controller
 
     public function index()
     {
+        // $user = UserModel::find(Auth::id());
         $params = [
             'sprints' => SprintModel::orderBy('id', 'desc')->get()
         ];
@@ -81,10 +84,13 @@ class SprintController extends Controller
     public function show(Request $request)
     {
         if ($sprint = SprintModel::find($request->id)) {
-            $params = [
-                'sprint' => $sprint
-            ];
-            return view('system.sprints.show', $params);
+            if ($sprint->project->loggedUserHavePermissionToView()) {
+                $params = [
+                    'sprint' => $sprint,
+                    'user' => UserModel::find(Auth::id())
+                ];
+                return view('system.sprints.show', $params);
+            }
         }
         return abort(404, 'Sprint não encontrado');
     }

@@ -105,7 +105,8 @@ class ProjectsController extends Controller
         if ($project = ProjectModel::find($request->id)) {
             if ($project->loggedUserHavePermissionToView()) {
                 $params = [
-                    'project' => $project
+                    'project' => $project,
+                    'user' => UserModel::find(Auth::id())
                 ];
                 return view('system.projects.show', $params);
             }

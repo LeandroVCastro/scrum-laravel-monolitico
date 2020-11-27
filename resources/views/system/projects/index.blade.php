@@ -47,17 +47,17 @@
                                     <td>{{ $project->description }}</td>
                                     <td class="options">
                                         @if ($user->admin)
-                                        <a type="button" class="btn btn-danger btn-sm"
-                                        onclick="return confirm('Tem certeza?')"
-                                        href=" {{ route('delete-project', ['id' => $project->id]) }} ">
-                                            <i class="far fa-trash-alt"></i>
-                                        </a>
+                                            <a type="button" class="btn btn-danger btn-sm"
+                                            onclick="return confirm('Tem certeza?')"
+                                            href=" {{ route('delete-project', ['id' => $project->id]) }} ">
+                                                <i class="far fa-trash-alt"></i>
+                                            </a>
                                         @endif
                                         @if ($project->loggedUserHavePermissionToSave())
-                                        <a type="button" class="btn btn-primary btn-sm"
-                                        href=" {{ route('edit-project', ['id' => $project->id]) }} ">
-                                            <i class="far fa-edit"></i>
-                                        </a>
+                                            <a type="button" class="btn btn-primary btn-sm"
+                                            href=" {{ route('edit-project', ['id' => $project->id]) }} ">
+                                                <i class="far fa-edit"></i>
+                                            </a>
                                         @endif
                                         <a type="button" class="btn btn-secondary btn-sm"
                                         href=" {{ route('project', ['id' => $project->id]) }} ">

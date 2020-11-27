@@ -25,7 +25,7 @@
                         <thead class="thead">
                             <tr>
                                 <th scope="col" style="width: 5%;">#</th>
-                                <th scope="col" style="width: 10%">Nome</th>
+                                <th scope="col" style="width: 15%">Nome</th>
                                 <th scope="col" style="width: 20%;">Descrição</th>
                                 <th scope="col" style="width: 35%;">Status</th>
                                 <th scope="col" style="width: 20%;">Opções</th>
@@ -49,17 +49,21 @@
                                         @endif
                                     </td>
                                     <td class="options">
-                                        <a type="button" class="btn btn-danger btn-sm"
-                                        onclick="return confirm('Tem certeza?')"
-                                        href=" {{ route('delete-project', ['id' => $project->id]) }} ">
-                                            <i class="far fa-trash-alt"></i>
-                                        </a>
-                                        <a type="button" class="btn btn-primary btn-sm"
-                                        href=" {{ route('edit-project', ['id' => $project->id]) }} ">
-                                            <i class="far fa-edit"></i>
-                                        </a>
+                                        @if ($user->admin)
+                                            <a type="button" class="btn btn-danger btn-sm"
+                                            onclick="return confirm('Tem certeza?')"
+                                            href=" {{ route('delete-sprint', ['id' => $sprint->id]) }} ">
+                                                <i class="far fa-trash-alt"></i>
+                                            </a>
+                                        @endif
+                                        @if ($sprint->project->loggedUserHavePermissionToSave())
+                                            <a type="button" class="btn btn-primary btn-sm"
+                                            href=" {{ route('edit-sprint', ['id' => $sprint->id]) }} ">
+                                                <i class="far fa-edit"></i>
+                                            </a>
+                                        @endif
                                         <a type="button" class="btn btn-secondary btn-sm"
-                                        href=" {{ route('project', ['id' => $project->id]) }} ">
+                                        href=" {{ route('sprint', ['id' => $sprint->id]) }} ">
                                             <i class="far fa-eye"></i>
                                         </a>
                                     </td>
