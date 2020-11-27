@@ -32,6 +32,10 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+        if (!Auth::user()->admin) {
+            $request->session()->flash('message.erro', 'Você não tem permissão para isso');
+            return redirect('/users');
+        }
         try {
             if ($request->id) {
                 $user = UserModel::find($request->id);
@@ -42,18 +46,15 @@ class UserController extends Controller
             } else {
                 $user = new UserModel;
             }
-            if (Auth::user()->admin) {
-                if (!$user->id) {
-                    $user->password = Hash::make($request->password);
-                }
-                $user->name = $request->name;
-                $user->email = $request->email;
-                $user->admin = $request->admin ? true : false;
-                $user->save();
-                $request->session()->flash('message.success', 'Salvo com sucesso!');
-                return redirect('/users');;
+            if (!$user->id) {
+                $user->password = Hash::make($request->password);
             }
-            $request->session()->flash('message.error', 'Você não tem permissão para isso');
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->admin = $request->admin ? true : false;
+            $user->save();
+            $request->session()->flash('message.success', 'Salvo com sucesso!');
+            return redirect('/users');;
         } catch (\Throwable $th) {
             $request->session()->flash('message.error', 'Erro interno: ' . $th->getMessage());
         }
