@@ -77,4 +77,15 @@ class SprintController extends Controller
         }
         return abort(404, 'Sprint não encontrado');
     }
+
+    public function show(Request $request)
+    {
+        if ($sprint = SprintModel::find($request->id)) {
+            $params = [
+                'sprint' => $sprint
+            ];
+            return view('system.sprints.show', $params);
+        }
+        return abort(404, 'Sprint não encontrado');
+    }
 }

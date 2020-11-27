@@ -8,40 +8,45 @@
         <div class="col-sm-10">
             <div class="card">
                 <div class="card-header">
-                    Projetos
+                    Sprint: {{ $sprint->title }}
                 </div>
                 <div class="card-body">
-                    @if(session()->has('message.success'))
-                        <div class="alert alert-success"> 
-                            {{ session('message.success') }}
-                        </div>
-                    @endif
-                    @if(session()->has('message.error'))
-                        <div class="alert alert-danger"> 
-                            {{ session('message.error') }}
-                        </div>
-                    @endif
-                    <a class="btn btn-primary btn-new" href="{{ route('new-project') }}">
-                        <i class="fas fa-plus"></i> Novo
-                    </a>
-                    
+                    <p class="card-text">{{ $sprint->description}}</p>
+                </div>
+            </div>
+            <br>
+            <div class="card">
+                <div class="card-header">
+                    Tarefas
+                </div>
+                <div class="card-body">
                     <table class="table table-hover">
                         <thead class="thead-dark">
                             <tr>
                                 <th scope="col" style="width: 5%;">#</th>
-                                <th scope="col" style="width: 10%">Imagem</th>
-                                <th scope="col" style="width: 20%;">Nome</th>
-                                <th scope="col" style="width: 35%;">Descrição</th>
+                                <th scope="col" style="width: 10%">Nome</th>
+                                <th scope="col" style="width: 20%;">Descrição</th>
+                                <th scope="col" style="width: 35%;">Status</th>
                                 <th scope="col" style="width: 20%;">Opções</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @foreach ($projects as $project)
+                        {{-- <tbody>
+                            @foreach ($project->sprints()->orderBy('created_at', 'desc')->get() as $sprint)
                                 <tr>
-                                    <th scope="row">{{ $project->id}}</th>
-                                    <td> <img src="{{ asset('storage/projects/' . $project->image) }}" style="width: 100%;" alt=""> </td>
-                                    <td>{{ $project->name }}</td>
-                                    <td>{{ $project->description }}</td>
+                                    <th>{{ $sprint->id }}</th>
+                                    <td>{{ $sprint->title }}</td>
+                                    <td>{{ $sprint->description }}</td>
+                                    <td>
+                                        @if ($sprint->status->id === 1)
+                                            <span class="badge badge-warning">{{ $sprint->status->title }}</span>
+                                        @endif
+                                        @if ($sprint->status->id === 2)
+                                            <span class="badge badge-primary">{{ $sprint->status->title }}</span>
+                                        @endif
+                                        @if ($sprint->status->id === 3)
+                                            <span class="badge badge-success">{{ $sprint->status->title }}</span>
+                                        @endif
+                                    </td>
                                     <td class="options">
                                         <a type="button" class="btn btn-danger btn-sm"
                                         onclick="return confirm('Tem certeza?')"
@@ -59,10 +64,10 @@
                                     </td>
                                 </tr>
                             @endforeach
-                        </tbody>
+                        </tbody> --}}
                     </table>
                 </div>
-            </div>
+            </div> 
         </div>
     </div>
 </div>

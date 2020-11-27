@@ -85,8 +85,7 @@ class ProjectsController extends Controller
                 'project' => $project
             ];
             return view('system.projects.show', $params);
-        } else {
-            return abort(404, 'Projeto não encontrado');
         }
+        return abort(404, 'Projeto não encontrado');
     }
 }

@@ -43,3 +43,5 @@ Route::get('/sprints/edit/{id}', 'SprintController@editRender')->name('edit-spri
 Route::post('/sprints/store', 'SprintController@store')->name('store-sprint');
 // Deleta sprint
 Route::get('/sprints/delete/{id}', 'SprintController@destroy')->name('delete-sprint');
+// Ver sprint
+Route::get('/sprints/{id}', 'SprintController@show')->name('sprint');

@@ -49,22 +49,19 @@
                                         @endif
                                     </td>
                                     <td class="options">
-                                        Opções
-                                        {{-- <div class="btn-group" role="group" aria-label="Opções">
-                                            <a type="button" class="btn btn-danger btn-sm"
-                                            onclick="return confirm('Tem certeza?')"
-                                            href=" {{ route('delete-project', ['id' => $sprint->id]) }} ">
-                                                <i class="far fa-trash-alt"></i>
-                                            </a>
-                                            <a type="button" class="btn btn-primary btn-sm"
-                                            href=" {{ route('edit-project', ['id' => $sprint->id]) }} ">
-                                                <i class="far fa-edit"></i>
-                                            </a>
-                                            <a type="button" class="btn btn-secondary btn-sm"
-                                            href=" {{ route('project', ['id' => $sprint->id]) }} ">
-                                                <i class="far fa-eye"></i>
-                                            </a>
-                                        </div> --}}
+                                        <a type="button" class="btn btn-danger btn-sm"
+                                        onclick="return confirm('Tem certeza?')"
+                                        href=" {{ route('delete-project', ['id' => $project->id]) }} ">
+                                            <i class="far fa-trash-alt"></i>
+                                        </a>
+                                        <a type="button" class="btn btn-primary btn-sm"
+                                        href=" {{ route('edit-project', ['id' => $project->id]) }} ">
+                                            <i class="far fa-edit"></i>
+                                        </a>
+                                        <a type="button" class="btn btn-secondary btn-sm"
+                                        href=" {{ route('project', ['id' => $project->id]) }} ">
+                                            <i class="far fa-eye"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach
