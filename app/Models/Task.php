@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Sprint extends Model
+class Task extends Model
 {
     use SoftDeletes;
-    
+
     public function status()
     {
-        return $this->hasOne('App\Models\SprintsStatus', 'id', 'status_id');
+        return $this->belongsTo('App\Models\TaskStatus');
     }
 
     public function project()
@@ -19,8 +19,8 @@ class Sprint extends Model
         return $this->belongsTo('App\Models\Project');
     }
 
-    public function tasks()
+    public function sprint()
     {
-        return $this->hasMany('App\Models\Task');
+        return $this->belongsTo('App\Models\Sprint');
     }
 }

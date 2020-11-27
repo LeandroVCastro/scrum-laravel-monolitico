@@ -45,3 +45,10 @@ Route::post('/sprints/store', 'SprintController@store')->name('store-sprint');
 Route::get('/sprints/delete/{id}', 'SprintController@destroy')->name('delete-sprint');
 // Ver sprint
 Route::get('/sprints/{id}', 'SprintController@show')->name('sprint');
+
+
+// Tarefas --- Todas as rotas relacionadas as telas de Tarefas
+Route::prefix('tasks')->group(function () {
+    // Lista tarefas
+    Route::get('/', 'TaskController@index')->name('tasks');
+});
