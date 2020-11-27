@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Project as ProjectModel;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\User as UserModel;
 
 
 class ProjectsController extends Controller
@@ -16,8 +18,10 @@ class ProjectsController extends Controller
     
     public function index()
     {
+        $user = UserModel::find(Auth::id());
+        $user->projects();
         $params = [
-            'projects' => ProjectModel::orderBy('id', 'desc')->get()
+            'projects' => $user->projects
         ];
         return view('system.projects.index', $params);
     }
