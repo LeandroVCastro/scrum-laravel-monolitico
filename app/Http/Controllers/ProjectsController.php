@@ -62,9 +62,14 @@ class ProjectsController extends Controller
     public function destroy(Request $request)
     {
         if ($project = ProjectModel::find($request->id)) {
-            $project->delete();
-            Storage::delete('public/projects/' . $project->image);
-            $request->session()->flash('message.success', 'Excluído com sucesso!');
+            $user = UserModel::find(Auth::id());
+            if ($user->admin) {
+                $project->delete();
+                Storage::delete('public/projects/' . $project->image);
+                $request->session()->flash('message.success', 'Excluído com sucesso!');
+                return redirect('/projects');
+            }
+            $request->session()->flash('message.error', 'Você não tem permissão para isso');
             return redirect('/projects');
         }
         $request->session()->flash('message.error', 'Projeto Não encontrado');
