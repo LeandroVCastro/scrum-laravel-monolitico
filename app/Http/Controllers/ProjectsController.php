@@ -21,14 +21,20 @@ class ProjectsController extends Controller
         $user = UserModel::find(Auth::id());
         $user->projects();
         $params = [
-            'projects' => $user->projects
+            'projects' => $user->projects,
+            'user'     => $user
         ];
         return view('system.projects.index', $params);
     }
 
-    public function newRender()
+    public function newRender(Request $request)
     {
-        return view('system.projects.new');
+        $user = UserModel::find(Auth::id());
+        if ($user->admin) {
+            return view('system.projects.new');
+        }
+        $request->session()->flash('message.error', 'Você não tem permissão para isso');
+        return redirect('/projects');
     }
 
     public function store(Request $request)

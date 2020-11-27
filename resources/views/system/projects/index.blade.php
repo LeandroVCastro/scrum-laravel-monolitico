@@ -21,9 +21,12 @@
                             {{ session('message.error') }}
                         </div>
                     @endif
-                    <a class="btn btn-primary btn-new" href="{{ route('new-project') }}">
-                        <i class="fas fa-plus"></i> Novo
-                    </a>
+
+                    @if ($user->admin)
+                        <a class="btn btn-primary btn-new" href="{{ route('new-project') }}">
+                            <i class="fas fa-plus"></i> Novo
+                        </a>
+                    @endif
                     
                     <table class="table table-hover">
                         <thead class="thead">
@@ -43,15 +46,19 @@
                                     <td>{{ $project->name }}</td>
                                     <td>{{ $project->description }}</td>
                                     <td class="options">
+                                        @if ($user->admin)
                                         <a type="button" class="btn btn-danger btn-sm"
                                         onclick="return confirm('Tem certeza?')"
                                         href=" {{ route('delete-project', ['id' => $project->id]) }} ">
                                             <i class="far fa-trash-alt"></i>
                                         </a>
+                                        @endif
+                                        @if ($project->loggedUserHavePermissionToSave())
                                         <a type="button" class="btn btn-primary btn-sm"
                                         href=" {{ route('edit-project', ['id' => $project->id]) }} ">
                                             <i class="far fa-edit"></i>
                                         </a>
+                                        @endif
                                         <a type="button" class="btn btn-secondary btn-sm"
                                         href=" {{ route('project', ['id' => $project->id]) }} ">
                                             <i class="far fa-eye"></i>
