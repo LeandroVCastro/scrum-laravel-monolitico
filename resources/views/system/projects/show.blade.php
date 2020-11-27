@@ -12,7 +12,7 @@
                 </div>
                 <div class="card-body">
                     <p class="card-text">{{ $project->description}}</p>
-                    <img src="{{ asset('storage/projects/' . $project->image) }}" style="max-width: 100%;" alt="Imagem do projeto">
+                    <img src="{{ asset('storage/projects/' . $project->image) }}" alt="Imagem do projeto" class="img-thumbnail rounded" style="max-width: 250px">
                 </div>
             </div>
             <br>

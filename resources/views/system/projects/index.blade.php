@@ -42,7 +42,10 @@
                             @foreach ($projects as $project)
                                 <tr>
                                     <th scope="row">{{ $project->id}}</th>
-                                    <td> <img src="{{ asset('storage/projects/' . $project->image) }}" style="width: 100%;" alt=""> </td>
+                                    <td>
+                                        <img src="{{ asset('storage/projects/' . $project->image) }}" 
+                                        alt="Imagem do projeto" class="img-thumbnail rounded" style="max-width: 100%">
+                                    </td>
                                     <td>{{ $project->name }}</td>
                                     <td>{{ $project->description }}</td>
                                     <td class="options">

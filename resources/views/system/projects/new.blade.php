@@ -35,7 +35,7 @@
                         @if (isset($project))
                             <div class="row">
                                 <div class="offset-sm-2 col-sm-10">
-                                    <img src="{{ asset('storage/projects/' . $project->image) }}" style="max-width: 100%;" alt="">
+                                    <img src="{{ asset('storage/projects/' . $project->image) }}" alt="..." class="img-thumbnail rounded" style="max-width: 250px">
                                 </div>
                             </div>
                             <input type="hidden" name="id" value="{{$project->id}}">
