@@ -11,7 +11,20 @@
                     Sprint: {{ $sprint->title }}
                 </div>
                 <div class="card-body">
-                    <p class="card-text">{{ $sprint->description}}</p>
+                    <p class="card-text">
+                        Status: 
+                        @if ($sprint->status->id === 1)
+                            <span class="badge badge-warning">{{ $sprint->status->title }}</span>
+                        @endif
+                        @if ($sprint->status->id === 2)
+                            <span class="badge badge-primary">{{ $sprint->status->title }}</span>
+                        @endif
+                        @if ($sprint->status->id === 3)
+                            <span class="badge badge-success">{{ $sprint->status->title }}</span>
+                        @endif
+                        <br>
+                        {{ $sprint->description}}
+                    </p>
                 </div>
             </div>
             <br>
