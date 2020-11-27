@@ -16,16 +16,16 @@
 
 
 <div class="list-group">
-    <a class="list-group-item list-group-item-action active" href="{{ route('dashboard') }}">
+    <a class="list-group-item list-group-item-action" id="dashboard" href="{{ route('dashboard') }}">
         <i class="fas fa-home"></i> Início
     </a>
-    <a class="list-group-item list-group-item-action" href="{{ route('projects') }}">
+    <a class="list-group-item list-group-item-action" id="projects" href="{{ route('projects') }}">
         <i class="fas fa-clipboard-list"></i> Projetos
     </a>
-    <a class="list-group-item list-group-item-action" href="{{ route('sprints') }}">
+    <a class="list-group-item list-group-item-action" id="sprints" href="{{ route('sprints') }}">
         <i class="fas fa-running"></i> Sprints
     </a>
-    <a class="list-group-item list-group-item-action" href="{{ route('tasks') }}">
+    <a class="list-group-item list-group-item-action" id="tasks" href="{{ route('tasks') }}">
         <i class="fas fa-tasks"></i> Tarefas
     </a>
     <a class="list-group-item list-group-item-action" href="{{ route('logout') }}"
@@ -36,3 +36,16 @@
         @csrf
     </form>
 </div>
+
+<script>
+    const setActiveMenu = function() {
+        const uri = location.pathname.substr(1);
+        try {
+            let element = document.getElementById(uri);
+            element.classList.add('active');
+        } catch (error) {
+            console.info('Não foi possível setar o menu ativo: ', error);
+        }
+    }
+    setActiveMenu()
+</script>
